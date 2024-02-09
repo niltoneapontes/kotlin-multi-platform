@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
+    kotlin("plugin.serialization") version "1.9.21"
 }
 
 kotlin {
@@ -35,6 +36,7 @@ kotlin {
         androidMain.dependencies {
             implementation(libs.compose.ui.tooling.preview)
             implementation(libs.androidx.activity.compose)
+            implementation("io.ktor:ktor-client-android:2.3.8")
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -43,7 +45,18 @@ kotlin {
             implementation(compose.ui)
             @OptIn(ExperimentalComposeLibrary::class)
             implementation(compose.components.resources)
+            implementation("media.kamel:kamel-image:0.9.1")
+            implementation("io.ktor:ktor-client-core:2.3.8")
+            implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.2")
+            implementation("io.ktor:ktor-client-content-negotiation:2.3.8")
+            implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.8")
+            api("dev.icerock.moko:mvvm-core:0.16.1")
+            implementation("dev.icerock.moko:mvvm-compose:0.16.1")
         }
+        iosMain.dependencies {
+            implementation("io.ktor:ktor-client-darwin:2.3.8")
+        }
+
         desktopMain.dependencies {
             implementation(compose.desktop.currentOs)
         }
